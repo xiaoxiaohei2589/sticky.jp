@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	html body{
+		font-size: 12px;
+	}
+	*{
+		margin: 0;
+		padding:0;
+	}
+	#Wrap {
+		width: 1000px;
+		overflow: scroll;
+		height: 550px;
+		resize: both;
+		margin: 20px auto;
+		border:1px solid black;
+	}
+	#SouryouEditTable {
+		display: grid;
+		grid-template-columns: 80px auto 40px;
+		grid-template-rows: auto auto;
+		grid-template-areas: "tLetsu tLetsu tmp"
+							 "tGyou content tmp";
+		margin-bottom:20px;
+	}
+	#SouryouEditTable::after{
+		content: "";
+		display: block;
+		grid-area: tmp
+	}
+	#SouryouEditTable * {
+		box-sizing: border-box;
+	}
+	#SouryouEditTable input {
+		width: 100%;
+	}
+	#SouryouEditTable .table_cell {
+		padding: 2px;
+		border: 1px solid black;
+	}
+	#souryouEditPrefGroup {
+		grid-area: tGyou;
+		border-bottom: 1px solid black;
+		position: sticky;
+		left: 0;
+	}
+	#souryouEditPrefGroup .pref_groups {
+		display: grid;
+		grid-template-areas: "group pref";
+		grid-template-columns: 20px 1fr;
+	}
+	#souryouEditPrefGroup .pref_groups .gruop{
+		-ms-writing-mode:tb-rl;
+		writing-mode:vertical-rl;
+		grid-area: group;
+		display: flex;
+		place-items:center;
+		justify-content: center;
+		border-bottom: 0px;
+		border-right: 0px;
+		background-color: bisque;
+	}
+	#souryouEditPrefGroup .pref_groups .pref{
+		grid-area: pref;
+		background-color: beige;
+	}
+	#souryouEditPrefGroup .pref_groups .pref > li{
+		height: 30px;
+		display: grid;
+		align-items: center;
+		text-align-last: justify;
+		justify: inter-ideograph;
+		border-bottom: 0px;
+	}
+	#souryouEditJuryouGroup{
+		grid-area: tLetsu;
+		display: flex;
+		margin-bottom: -1px;
+		background-color: beige;
+		position: sticky;
+		top: 0;
+	}
+	#souryouEditJuryouGroup .juryou {
+		display: grid;
+		grid-template-columns: 1fr 34px;
+		place-items: center;
+		width: 80px;
+	}
+	#souryouEditJuryouGroup .juryou:not(.blank_cell) {
+		border-left: 0px;
+	}
+	#souryouEditJuryouGroup .blank_cell{
+		position: sticky;
+		left:0;
+		top:0;
+		z-index: 5;
+		background-color: bisque;
+		grid-template-columns: 1fr;
+	}
+	#SouryouEditTableYohaku {
+		grid-area: tmp;
+	}
+</style>
+</head>
+
+<body>
+<div id="Wrap">
+  <div id="SouryouEditTable">
+    <ul id="souryouEditPrefGroup" class="title_table">
+      <li class="pref_groups">
+        <div class="gruop table_cell">北海道・東北</div>
+        <ul class="pref">
+          <li class="table_cell">北海道</li>
+          <li class="table_cell">青森県</li>
+          <li class="table_cell">秋田県</li>
+          <li class="table_cell">岩手県</li>
+          <li class="table_cell">山形県</li>
+          <li class="table_cell">宮城県</li>
+          <li class="table_cell">福島県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">甲信越・北陸</div>
+        <ul class="pref">
+          <li class="table_cell">山梨県</li>
+          <li class="table_cell">長野県</li>
+          <li class="table_cell">新潟県</li>
+          <li class="table_cell">富山県</li>
+          <li class="table_cell">石川県</li>
+          <li class="table_cell">福井県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">関東</div>
+        <ul class="pref">
+          <li class="table_cell">茨城県</li>
+          <li class="table_cell">栃木県</li>
+          <li class="table_cell">群馬県</li>
+          <li class="table_cell">埼玉県</li>
+          <li class="table_cell">千葉県</li>
+          <li class="table_cell">東京都</li>
+          <li class="table_cell">神奈川県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">東海</div>
+        <ul class="pref">
+          <li class="table_cell">愛知県</li>
+          <li class="table_cell">静岡県</li>
+          <li class="table_cell">岐阜県</li>
+          <li class="table_cell">三重県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">関西</div>
+        <ul class="pref">
+          <li class="table_cell">大阪府</li>
+          <li class="table_cell">兵庫県</li>
+          <li class="table_cell">京都府</li>
+          <li class="table_cell">滋賀県</li>
+          <li class="table_cell">奈良県</li>
+          <li class="table_cell">和歌山県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">中国</div>
+        <ul class="pref">
+          <li class="table_cell">岡山県</li>
+          <li class="table_cell">広島県</li>
+          <li class="table_cell">鳥取県</li>
+          <li class="table_cell">島根県</li>
+          <li class="table_cell">山口県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">四国</div>
+        <ul class="pref">
+          <li class="table_cell">徳島県</li>
+          <li class="table_cell">香川県</li>
+          <li class="table_cell">愛媛県</li>
+          <li class="table_cell">高知県</li>
+        </ul>
+      </li>
+      <li class="pref_groups">
+        <div class="gruop table_cell">九州・沖縄</div>
+        <ul class="pref">
+          <li class="table_cell">福岡県</li>
+          <li class="table_cell">佐賀県</li>
+          <li class="table_cell">長崎県</li>
+          <li class="table_cell">熊本県</li>
+          <li class="table_cell">大分県</li>
+          <li class="table_cell">宮崎県</li>
+          <li class="table_cell">鹿児島県</li>
+          <li class="table_cell">沖縄県</li>
+        </ul>
+      </li>
+    </ul>
+    <ul id="souryouEditJuryouGroup">
+      <li class="juryou blank_cell table_cell"></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[1]" value="0.1" tabindex="1"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[2]" value="1" tabindex="2"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[3]" value="2" tabindex="3"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[4]" value="3" tabindex="4"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[5]" value="4" tabindex="5"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[6]" value="5" tabindex="6"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[7]" value="6" tabindex="7"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[8]" value="7" tabindex="8"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[9]" value="8" tabindex="9"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[10]" value="9" tabindex="10"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[11]" value="10" tabindex="11"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[12]" value="11" tabindex="12"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[13]" value="12" tabindex="13"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[14]" value="13" tabindex="14"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[15]" value="14" tabindex="15"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[16]" value="15" tabindex="16"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[17]" value="16" tabindex="17"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[18]" value="17" tabindex="18"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[19]" value="18" tabindex="19"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[20]" value="19" tabindex="20"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[21]" value="20" tabindex="21"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[22]" value="21" tabindex="22"><span>kg～</span></li>
+      <li class="juryou table_cell"><input type="number" step="0.1" name="juryo[23]" value="" tabindex="23"><span>kg～</span></li>
+    </ul>
+    <div id="souryouEditContent"></div>
+  </div>
+</div>
+</body>
+</html>
